@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit,:update]
 
   def show
@@ -28,21 +29,6 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
-  end
-
-  def self.looks(search, word)
-    if search == perfect_match
-      @user = User.where("name LINK?","#{word}")
-    elsif search == forward_match
-      @user = User.where("name LINK?","#{word}")
-    elsif search == backward_match
-      @user = User.where("name LINK?","#{word}")
-    elsif search == partial_match
-      @user = User.where("name LINK?","#{word}")
-    else
-      @user = User.all
-    end
-
   end
 
   private
