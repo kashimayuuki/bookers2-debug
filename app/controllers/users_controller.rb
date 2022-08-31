@@ -30,6 +30,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def self.looks(search, word)
+    if search == perfect_match
+      @user = User.where("name LINK?","#{word}")
+    elsif search == forward_match
+      @user = User.where("name LINK?","#{word}")
+    elsif search == backward_match
+      @user = User.where("name LINK?","#{word}")
+    elsif search == partial_match
+      @user = User.where("name LINK?","#{word}")
+    else
+      @user = User.all
+    end
+
+  end
+
   private
 
   def user_params
